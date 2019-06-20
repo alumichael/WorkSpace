@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="colorAccent">#fffbc011</color>
+    <color name="colorCyan">#ff19e6bd</color>
+    <color name="colorOrange">#ffe64a19</color>
+    <color name="colorPrimary">#ff171a19</color>
+    <color name="colorPrimaryDark">#ff0c0c0c</color>
+    <color name="colorPurple">#ff3f19e6</color>
+    <color name="colorRed">#ff9c0303</color>
+    <color name="colorWhite">#ffffffff</color>
+    <color name="colorWhitetransparent">#97fdf9f9</color>
+
+    <color name="dot_dark_screen1">#fff1cd65</color>
+    <color name="dot_dark_screen2">#fff1cd65</color>
+    <color name="dot_dark_screen3">#fff1cd65</color>
+    <color name="dot_light_screen1">#fffbc011</color>
+    <color name="dot_light_screen2">#fffbc011</color>
+    <color name="dot_light_screen3">#fffbc011</color>
+
+    <color name="place_autocomplete_prediction_primary_text">#ff212121</color>
+    <color name="place_autocomplete_prediction_primary_text_highlight">#ff757575</color>
+    <color name="place_autocomplete_prediction_secondary_text">#ff757575</color>
+    <color name="place_autocomplete_search_hint">#ffbdbdbd</color>
+    <color name="place_autocomplete_search_text">#ff212121</color>
+    <color name="place_autocomplete_separator">#1f000000</color>
+    <color name="placeholder_bg">#ffdddddd</color>
+
+
+    <color name="textColorPrimary">#ff212121</color>
+    <color name="textColorSecondary">#ff757575</color>
+
+</resources>

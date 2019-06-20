@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:dist="http://schemas.android.com/apk/distribution"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:contentDescription="background image"
+        android:scaleType="centerCrop"
+        android:src="@drawable/login_bgpix" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:gravity="center_vertical"
+        android:padding="@dimen/size_ten"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/add_photo_relative_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:src="@drawable/logo_for_now" />
+        </RelativeLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/inputLayoutEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/email_editxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/size_ten"
+                android:layout_marginRight="@dimen/size_ten"
+                android:background="@drawable/rounded_bg"
+                android:drawableEnd="@drawable/ic_email_black_24dp"
+                android:hint="Email"
+                android:inputType="textEmailAddress"
+                android:padding="@dimen/size_ten" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/inputLayoutFirstname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/firstname_editxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/size_ten"
+                android:layout_marginRight="@dimen/size_ten"
+                android:background="@drawable/rounded_bg"
+                android:drawableEnd="@drawable/ic_person_black_24dp"
+                android:hint="First Name"
+                android:inputType="textPersonName"
+                android:padding="@dimen/size_ten" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/inputLayoutLastname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/lastname_editxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/size_ten"
+                android:layout_marginRight="@dimen/size_ten"
+                android:background="@drawable/rounded_bg"
+                android:drawableEnd="@drawable/ic_person_black_24dp"
+                android:hint="Second Name"
+                android:inputType="textPersonName"
+                android:padding="@dimen/size_ten" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/inputLayoutPhonenum"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/phone_num_editxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/size_ten"
+                android:layout_marginRight="@dimen/size_ten"
+                android:background="@drawable/rounded_bg"
+                android:drawableEnd="@drawable/ic_contact_phone_black_24dp"
+                android:hint="Phone Number"
+                android:inputType="textPersonName"
+                android:padding="@dimen/size_ten" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/inputLayoutDesignation_stack"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/designation_editxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/size_ten"
+                android:layout_marginRight="@dimen/size_ten"
+                android:background="@drawable/rounded_bg"
+                android:drawableEnd="@drawable/ic_stars_black_24dp"
+                android:hint="Designation or Stack"
+                android:inputType="textPersonName"
+                android:padding="@dimen/size_ten" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/inputLayoutPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/password_editxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/size_ten"
+                android:layout_marginRight="@dimen/size_ten"
+                android:background="@drawable/rounded_bg"
+                android:drawableEnd="@drawable/ic_vpn_key_black_24dp"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:padding="@dimen/size_ten" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/register_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/size_fifteen"
+            android:layout_marginTop="@dimen/size_ten"
+            android:layout_marginRight="@dimen/size_fifteen"
+            android:background="@drawable/rounded_bg_color_btn"
+            android:text="Register"
+            android:textColor="@android:color/white"
+            android:visibility="visible" />
+
+        <com.wang.avi.AVLoadingIndicatorView
+            android:id="@+id/avi1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            app:indicatorColor="@color/colorAccent"
+            app:indicatorName="BallPulseIndicator" />
+    </LinearLayout>
+</FrameLayout>

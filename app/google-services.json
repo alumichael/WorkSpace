@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "780292638504",
+    "firebase_url": "https://workspace-40c1f.firebaseio.com",
+    "project_id": "workspace-40c1f",
+    "storage_bucket": "workspace-40c1f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:780292638504:android:bea09a826aa4fac8",
+        "android_client_info": {
+          "package_name": "com.mike4christ.tisvdigital"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "780292638504-al0ti70s81i71av9q1avn6qgmr6jekde.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mike4christ.tisvdigital",
+            "certificate_hash": "5c394b46e9b9dcd8a61d796630cff375efea6576"
+          }
+        },
+        {
+          "client_id": "780292638504-d6f7u65edcqc1h14lme8ku0hp7nn6ljk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA3tPM8Gu8hf6NPzZn24iz6mm-T3IwbBo0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "780292638504-d6f7u65edcqc1h14lme8ku0hp7nn6ljk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

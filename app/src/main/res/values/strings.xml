@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="app_name">tisv.digital</string>
+    <string name="appbar_scrolling_view_behavior">android.support.design.widget.AppBarLayout$ScrollingViewBehavior</string>
+
+    <string name="chat">Chat Room</string>
+
+    <string name="dashboard">Dashboard</string>
+
+
+    <string name="get_started">Skip to Get Started</string>
+    <string name="log_in">Log In</string>
+    <string name="logout">Log Out!</string>
+
+    <string name="web">Channel</string>
+</resources>

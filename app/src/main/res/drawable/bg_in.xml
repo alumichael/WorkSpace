@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" xmlns:dist="http://schemas.android.com/apk/distribution" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:aapt="http://schemas.android.com/aapt">
+    <item android:top="30dp">
+        <rotate android:fromDegrees="-45" android:toDegrees="0" android:pivotX="0%" android:pivotY="0%">
+            <shape android:padding="10dp" android:shape="rectangle">
+                <solid android:color="#ccc"/>
+            </shape>
+        </rotate>
+    </item>
+    <item android:left="20dp">
+        <shape android:padding="10dp" android:shape="rectangle">
+            <solid android:color="#ccc"/>
+            <corners android:radius="5dp"/>
+        </shape>
+    </item>
+</layer-list>
