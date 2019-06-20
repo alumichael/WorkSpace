@@ -1,19 +1,22 @@
 package com.mike4christ.tisvdigital;
 
-import android.app.Activity;
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build.VERSION;
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentTransaction;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.mike4christ.tisvdigital.fragment.OneOnOneFragment;
 
 public class ChatActivity extends AppCompatActivity {
-    @BindView(2131296575)
+    @BindView(R.id.toolbar)
     Toolbar toolBar;
 
     public static void startActivity(Context context, String receiver_firstname, String receiver_lastname, String receiver_email, String receiver_link, String firebaseToken) {
@@ -26,10 +29,11 @@ public class ChatActivity extends AppCompatActivity {
         context.startActivity(intent);
     }
 
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView((int) C0506R.layout.activity_chat);
-        ButterKnife.bind((Activity) this);
+        setContentView(R.layout.activity_chat);
+        ButterKnife.bind(this);
         init();
     }
 
@@ -41,7 +45,7 @@ public class ChatActivity extends AppCompatActivity {
         String str2 = Constant.ARG_RECEIVER_EMAIL;
         applyToolbar(string, extras2.getString(str2));
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(C0506R.id.frame_layout_content_chat, OneOnOneFragment.newInstance(getIntent().getExtras().getString(Constant.ARG_RECEIVER_FIRST), getIntent().getExtras().getString(str), getIntent().getExtras().getString(str2), getIntent().getExtras().getString(Constant.ARG_RECEIVER_LINK), getIntent().getExtras().getString(Constant.ARG_FIREBASE_TOKEN)), OneOnOneFragment.class.getSimpleName());
+        fragmentTransaction.replace(R.id.frame_layout_content_chat, OneOnOneFragment.newInstance(getIntent().getExtras().getString(Constant.ARG_RECEIVER_FIRST), getIntent().getExtras().getString(str), getIntent().getExtras().getString(str2), getIntent().getExtras().getString(Constant.ARG_RECEIVER_LINK), getIntent().getExtras().getString(Constant.ARG_FIREBASE_TOKEN)), OneOnOneFragment.class.getSimpleName());
         fragmentTransaction.commit();
     }
 
@@ -49,9 +53,9 @@ public class ChatActivity extends AppCompatActivity {
         setSupportActionBar(this.toolBar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setTitle((CharSequence) title);
-        getSupportActionBar().setSubtitle((CharSequence) subtitle);
-        getSupportActionBar().setHomeAsUpIndicator((int) C0506R.drawable.ic_keyboard_arrow_left_black_24dp);
+        getSupportActionBar().setTitle(title);
+        getSupportActionBar().setSubtitle(subtitle);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_24dp);
         if (VERSION.SDK_INT >= 21) {
             this.toolBar.setElevation(10.0f);
         }

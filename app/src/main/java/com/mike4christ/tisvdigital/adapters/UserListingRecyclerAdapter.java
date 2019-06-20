@@ -24,7 +24,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import java.util.List;
 
 public class UserListingRecyclerAdapter extends RecyclerView.Adapter<UserListingRecyclerAdapter.ViewHolder> {
-    Context context;
+
     private List<User> mUsers;
 
 
@@ -34,34 +34,38 @@ public class UserListingRecyclerAdapter extends RecyclerView.Adapter<UserListing
     }
 
     public void add(User user) {
-        this.mUsers.add(user);
+        mUsers.add(user);
         notifyItemInserted(this.mUsers.size() - 1);
     }
     @Override
-    public UserListingRecyclerAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.chat_hall_list, parent, false));
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.chat_hall_list, parent, false);
+        return new ViewHolder(view);
+
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, int position) {
         User user = mUsers.get(position);
-        holder.firstName.setText(user.firstname);
-        holder.lastName.setText(user.lastname);
-        holder.email.setText(user.email);
-        Log.d("Check Database: -----", user.link);
-        if (user.link.equals("Default")) {
-            holder.users_photo.setImageResource(R.drawable.man);
-        } else {
-            holder.userPhoto(user.getLink());
+
+        if (user.email != null) {
+            holder.firstName.setText(user.firstname);
+            holder.lastName.setText(user.lastname);
+            holder.email.setText(user.email);
+            Log.d("Check Database: -----", user.link);
+            if (user.link.equals("Default")) {
+                holder.users_photo.setImageResource(R.drawable.man);
+            } else {
+                holder.userPhoto(user.getLink());
+            }
         }
     }
 
 
 
     public int getItemCount() {
-        List list = this.mUsers;
-        if (list != null) {
-            return list.size();
+        if (mUsers != null) {
+            return mUsers.size();
         }
         return 0;
     }
@@ -70,7 +74,7 @@ public class UserListingRecyclerAdapter extends RecyclerView.Adapter<UserListing
         return mUsers.get(position);
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+     static class ViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.email)
         TextView email;
         @BindView(R.id.firstname)

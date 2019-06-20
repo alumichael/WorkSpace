@@ -118,7 +118,7 @@ public class Dashboard extends AppCompatActivity {
 
         }else {
             new UserPreferences(this).setUserLogged(false);
-            Toast.makeText(this, "Null User data,please try to login again", 1).show();
+            Toast.makeText(this, "Null User data,please try to login again", Toast.LENGTH_LONG).show();
             startActivity(new Intent(this, LoginActivity.class));
         }
     }

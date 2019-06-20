@@ -20,8 +20,6 @@ public class ChatRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     private static final int VIEW_TYPE_OTHER = 2;
     private List<Chat> mChats;
 
-
-
     public ChatRecyclerAdapter(List<Chat> chats) {
         mChats = chats;
     }
@@ -33,17 +31,23 @@ public class ChatRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        if (viewType == 1) {
-            return new MyChatViewHolder(layoutInflater.inflate(R.layout.item_chat_mine, parent, false));
+        RecyclerView.ViewHolder viewHolder = null;
+        switch (viewType) {
+            case VIEW_TYPE_ME:
+                View viewChatMine = layoutInflater.inflate(R.layout.item_chat_mine, parent, false);
+                viewHolder = new MyChatViewHolder(viewChatMine);
+                break;
+            case VIEW_TYPE_OTHER:
+                View viewChatOther = layoutInflater.inflate(R.layout.item_chat_other, parent, false);
+                viewHolder = new OtherChatViewHolder(viewChatOther);
+                break;
         }
-        if (viewType != 2) {
-            return null;
-        }
-        return new OtherChatViewHolder(layoutInflater.inflate(R.layout.item_chat_other, parent, false));
+        return viewHolder;
     }
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        if (TextUtils.equals( mChats.get(position).senderEmail, FirebaseAuth.getInstance().getCurrentUser().getEmail())) {
+        if (TextUtils.equals(mChats.get(position).senderEmail,
+                FirebaseAuth.getInstance().getCurrentUser().getEmail())) {
             configureMyChatViewHolder((MyChatViewHolder) holder, position);
         } else {
             configureOtherChatViewHolder((OtherChatViewHolder) holder, position);
@@ -51,26 +55,31 @@ public class ChatRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     }
 
     private void configureMyChatViewHolder(MyChatViewHolder myChatViewHolder, int position) {
-        myChatViewHolder.txtChatMessage.setText( mChats.get(position).message);
+        Chat chat = mChats.get(position);
+
+        myChatViewHolder.txtChatMessage.setText( chat.message);
     }
 
     private void configureOtherChatViewHolder(OtherChatViewHolder otherChatViewHolder, int position) {
-        otherChatViewHolder.txtChatMessage.setText(mChats.get(position).message);
+        Chat chat = mChats.get(position);
+
+        otherChatViewHolder.txtChatMessage.setText(chat.message);
     }
 
     public int getItemCount() {
-        List list = mChats;
-        if (list != null) {
-            return list.size();
+        if (mChats != null) {
+            return mChats.size();
         }
         return 0;
     }
 
     public int getItemViewType(int position) {
-        if (TextUtils.equals(((Chat) mChats.get(position)).senderEmail, FirebaseAuth.getInstance().getCurrentUser().getEmail())) {
-            return 1;
+        if (TextUtils.equals(mChats.get(position).senderEmail,
+                FirebaseAuth.getInstance().getCurrentUser().getEmail())) {
+            return VIEW_TYPE_ME;
+        } else {
+            return VIEW_TYPE_OTHER;
         }
-        return 2;
     }
 
 
@@ -79,7 +88,7 @@ public class ChatRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
         public MyChatViewHolder(View itemView) {
             super(itemView);
-            txtChatMessage = (TextView) itemView.findViewById(R.id.text_view_chat_message);
+            txtChatMessage = itemView.findViewById(R.id.text_view_chat_message);
         }
     }
 
@@ -88,7 +97,7 @@ public class ChatRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
         public OtherChatViewHolder(View itemView) {
             super(itemView);
-            txtChatMessage = (TextView) itemView.findViewById(R.id.text_view_chat_message);
+            txtChatMessage = itemView.findViewById(R.id.text_view_chat_message);
         }
     }
 }

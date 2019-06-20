@@ -1,11 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:dist="http://schemas.android.com/apk/distribution" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:aapt="http://schemas.android.com/aapt" android:layout_width="match_parent" android:layout_height="match_parent">
-    <ImageView android:background="@drawable/chat_bg_edited" android:layout_width="match_parent" android:layout_height="match_parent" android:scaleType="centerCrop"/>
-    <RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent">
-        <android.support.v7.widget.RecyclerView android:id="@+id/recycler_view_chat" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_above="@+id/edit_layout" app:layoutManager="LinearLayoutManager"/>
-        <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:id="@+id/edit_layout" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_margin="@dimen/size_five" android:layout_alignParentBottom="true">
-            <EditText android:gravity="center_vertical" android:id="@+id/edit_text_message" android:background="@drawable/rounded_bg_chat" android:padding="6dp" android:layout_width="wrap_content" android:layout_height="50dp" android:layout_margin="4dp" android:hint="Type your message" android:maxLines="2" android:layout_weight="1" android:inputType="text"/>
-            <android.support.design.widget.FloatingActionButton android:id="@+id/fab_send" android:visibility="visible" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_margin="@dimen/size_eight" app:fabSize="1" app:srcCompat="@drawable/ic_send_black_24dp"/>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:dist="http://schemas.android.com/apk/distribution"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view_chat"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/edit_layout"
+            app:layoutManager="LinearLayoutManager" />
+
+        <LinearLayout
+            android:id="@+id/edit_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="@dimen/size_five"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/edit_text_message"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_margin="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/rounded_bg_chat"
+                android:gravity="center_vertical"
+                android:hint="Type your message"
+                android:inputType="text"
+                android:maxLines="2"
+                android:padding="6dp" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab_send"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/size_eight"
+                android:visibility="visible"
+                app:fabSize="mini"
+                app:srcCompat="@drawable/ic_send_black_24dp"
+                tools:ignore="VectorDrawableCompat" />
         </LinearLayout>
     </RelativeLayout>
 </FrameLayout>

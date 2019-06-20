@@ -5,37 +5,42 @@ import java.util.List;
 
 public interface GetUsersContract {
 
-    public interface Interactor {
-        void getAllUsersFromFirebase();
+    interface View {
 
-        void getChatUsersFromFirebase();
+        void onGetChatUsersSuccess(List<User> users);
+        void onGetChatUsersFailure(String message);
+
+        void onGetAllUsersFailure(String message);
+
+        void onGetAllUsersSuccess(List<User> users);
+
+
     }
 
-    public interface OnGetAllUsersListener {
-        void onGetAllUsersFailure(String str);
-
-        void onGetAllUsersSuccess(List<User> list);
-    }
-
-    public interface OnGetChatUsersListener {
-        void onGetChatUsersFailure(String str);
-
-        void onGetChatUsersSuccess(List<User> list);
-    }
-
-    public interface Presenter {
+    interface Presenter {
         void getAllUsers();
 
         void getChatUsers();
     }
 
-    public interface View {
-        void onGetAllUsersFailure(String str);
+    interface Interactor {
+        void getAllUsersFromFirebase();
 
-        void onGetAllUsersSuccess(List<User> list);
-
-        void onGetChatUsersFailure(String str);
-
-        void onGetChatUsersSuccess(List<User> list);
+        void getChatUsersFromFirebase();
     }
+
+    interface OnGetAllUsersListener {
+        void onGetAllUsersFailure(String message);
+
+        void onGetAllUsersSuccess(List<User> users);
+    }
+
+     interface OnGetChatUsersListener {
+        void onGetChatUsersFailure(String message);
+
+        void onGetChatUsersSuccess(List<User> users);
+    }
+
+
+
 }

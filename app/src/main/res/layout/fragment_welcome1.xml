@@ -1,9 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:dist="http://schemas.android.com/apk/distribution" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:aapt="http://schemas.android.com/aapt" android:layout_width="match_parent" android:layout_height="wrap_content">
-    <ImageView android:layout_gravity="center_vertical" android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/bg_slide1" android:scaleType="centerCrop"/>
-    <LinearLayout android:layout_gravity="center_vertical" android:orientation="vertical" android:padding="@dimen/size_twenty" android:layout_width="match_parent" android:layout_height="wrap_content">
-        <ImageView android:layout_gravity="center_horizontal" android:layout_width="100dp" android:layout_height="100dp" android:src="@drawable/chat_icon"/>
-        <TextView android:textSize="25sp" android:textStyle="bold" android:textColor="@color/colorAccent" android:gravity="center" android:id="@+id/txt_mentor" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="chat your fellow"/>
-        <TextView android:textColor="@android:color/white" android:gravity="center" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text=" Have you ever imagine what it meant to give feedback on a specific task"/>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:scaleType="centerCrop"
+        android:src="@drawable/bg_slide1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:orientation="vertical"
+        android:padding="@dimen/size_twenty">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/chat_icon" />
+
+        <TextView
+            android:id="@+id/txt_mentor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="chat your fellow"
+            android:textColor="@color/colorAccent"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text=" Have you ever imagine what it meant to give feedback on a specific task"
+            android:textColor="@android:color/white" />
     </LinearLayout>
 </FrameLayout>

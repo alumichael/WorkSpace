@@ -32,6 +32,7 @@ import com.mike4christ.tisvdigital.users.getall.SharedPrefUtil;
 import com.wang.avi.AVLoadingIndicatorView;
 
 public class LoginActivity extends BaseActivity implements View.OnClickListener {
+
     FirebaseUser authUser;
     private ProgressDialog dlg;
     @BindView(R.id.email_editxt)

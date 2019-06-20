@@ -7,35 +7,43 @@ import com.mike4christ.tisvdigital.chat.ChatContract.Presenter;
 import com.mike4christ.tisvdigital.chat.ChatContract.View;
 import com.mike4christ.tisvdigital.model.Chat;
 
-public class ChatPresenter implements Presenter, OnSendMessageListener, OnGetMessagesListener {
-    private ChatInteractor mChatInteractor = new ChatInteractor(this, this);
-    private View mView;
+public class ChatPresenter implements ChatContract.Presenter, ChatContract.OnSendMessageListener, ChatContract.OnGetMessagesListener {
 
-    public ChatPresenter(View view) {
+
+    private ChatContract.View mView;
+    private ChatInteractor mChatInteractor;
+
+    public ChatPresenter(ChatContract.View view) {
         this.mView = view;
+        mChatInteractor = new ChatInteractor(this, this);
     }
 
+
     public void sendMessage(Context context, Chat chat, String receiverFirebaseToken) {
-        this.mChatInteractor.sendMessageToFirebaseUser(context, chat, receiverFirebaseToken);
+        mChatInteractor.sendMessageToFirebaseUser(context, chat, receiverFirebaseToken);
     }
 
     public void getMessage(String senderEmail, String receiverEmail) {
-        this.mChatInteractor.getMessageFromFirebaseUser(senderEmail, receiverEmail);
+        mChatInteractor.getMessageFromFirebaseUser(senderEmail, receiverEmail);
     }
 
+    @Override
     public void onSendMessageSuccess() {
-        this.mView.onSendMessageSuccess();
+        mView.onSendMessageSuccess();
     }
 
+    @Override
     public void onSendMessageFailure(String message) {
-        this.mView.onSendMessageFailure(message);
+        mView.onSendMessageFailure(message);
     }
 
+    @Override
     public void onGetMessagesSuccess(Chat chat) {
-        this.mView.onGetMessagesSuccess(chat);
+        mView.onGetMessagesSuccess(chat);
     }
 
+    @Override
     public void onGetMessagesFailure(String message) {
-        this.mView.onGetMessagesFailure(message);
+        mView.onGetMessagesFailure(message);
     }
 }

@@ -1,31 +1,36 @@
 package com.mike4christ.tisvdigital.model;
 
 public class Users {
+
     private String emailId;
     private String lastMessage;
     private int notifCount;
 
     public String getEmailId() {
-        return this.emailId;
+        return emailId;
     }
 
-    public void setEmailId() {
-        this.emailId = this.emailId;
+    public void setEmailId(String emailId) {
+        this.emailId = emailId;
     }
 
     public String getLastMessage() {
-        return this.lastMessage;
+        return lastMessage;
     }
 
-    public void setLastMessage() {
-        this.lastMessage = this.lastMessage;
+    public void setLastMessage(String lastMessage) {
+        this.lastMessage = lastMessage;
     }
 
     public int getNotifCount() {
-        return this.notifCount;
+        return notifCount;
     }
 
     public void setNotifCount(int notifCount) {
         this.notifCount = notifCount;
     }
+
+
+
+
 }

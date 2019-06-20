@@ -6,13 +6,14 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
-import okhttp3.Request.Builder;
+import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class FcmNotificationBuilder {
+
     private static final String APPLICATION_JSON = "application/json";
     private static final String AUTHORIZATION = "Authorization";
     private static final String AUTH_KEY = "key=YOUR_SERVER_API_KEY";
@@ -40,25 +41,6 @@ public class FcmNotificationBuilder {
     private String mReceiverFirebaseToken;
     private String mTitle;
 
-    /* renamed from: com.mike4christ.tisvdigital.fcm.FcmNotificationBuilder$1 */
-    class C08131 implements Callback {
-        C08131() {
-        }
-
-        public void onFailure(Call call, IOException e) {
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append("onGetAllUsersFailure: ");
-            stringBuilder.append(e.getMessage());
-            Log.e(FcmNotificationBuilder.TAG, stringBuilder.toString());
-        }
-
-        public void onResponse(Call call, Response response) throws IOException {
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append("onResponse: ");
-            stringBuilder.append(response.body().string());
-            Log.e(FcmNotificationBuilder.TAG, stringBuilder.toString());
-        }
-    }
 
     private FcmNotificationBuilder() {
     }
@@ -114,18 +96,40 @@ public class FcmNotificationBuilder {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        new OkHttpClient().newCall(new Builder().addHeader(CONTENT_TYPE, APPLICATION_JSON).addHeader(AUTHORIZATION, AUTH_KEY).url(FCM_URL).post(requestBody).build()).enqueue(new C08131());
+
+
+        Request request = new Request.Builder()
+                .addHeader(CONTENT_TYPE, APPLICATION_JSON)
+                .addHeader(AUTHORIZATION, AUTH_KEY)
+                .url(FCM_URL)
+                .post(requestBody)
+                .build();
+
+        Call call = new OkHttpClient().newCall(request);
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Log.e(TAG, "onGetAllUsersFailure: " + e.getMessage());
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                Log.e(TAG, "onResponse: " + response.body().string());
+            }
+        });
+
     }
 
     private JSONObject getValidJsonBody() throws JSONException {
         JSONObject jsonObjectBody = new JSONObject();
-        jsonObjectBody.put(KEY_TO, this.mReceiverFirebaseToken);
+        jsonObjectBody.put(KEY_TO, mReceiverFirebaseToken);
+        //Data
         JSONObject jsonObjectData = new JSONObject();
-        jsonObjectData.put("title", this.mTitle);
-        jsonObjectData.put(KEY_TEXT, this.mMessage);
-        jsonObjectData.put("email", this.mEmail);
-        jsonObjectData.put(KEY_LINK, this.mLink);
-        jsonObjectData.put(KEY_FCM_TOKEN, this.mFirebaseToken);
+        jsonObjectData.put("title", mTitle);
+        jsonObjectData.put(KEY_TEXT, mMessage);
+        jsonObjectData.put("email", mEmail);
+        jsonObjectData.put(KEY_LINK, mLink);
+        jsonObjectData.put(KEY_FCM_TOKEN, mFirebaseToken);
         jsonObjectBody.put(KEY_DATA, jsonObjectData);
         return jsonObjectBody;
     }

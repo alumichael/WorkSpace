@@ -1,6 +1,6 @@
 package com.mike4christ.tisvdigital.fragment;
 
-import android.content.Context;
+
 import android.os.Bundle;
 
 import android.view.LayoutInflater;
@@ -14,16 +14,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.mike4christ.tisvdigital.ChatActivity;
+import com.mike4christ.tisvdigital.Constant;
 import com.mike4christ.tisvdigital.ItemClickSupport;
-import com.mike4christ.tisvdigital.ItemClickSupport.OnItemClickListener;
+
 import com.mike4christ.tisvdigital.R;
 import com.mike4christ.tisvdigital.adapters.UserListingRecyclerAdapter;
-import com.mike4christ.tisvdigital.chat.ChatContract;
+
 import com.mike4christ.tisvdigital.model.User;
+import com.mike4christ.tisvdigital.users.getall.GetUsersContract;
 import com.mike4christ.tisvdigital.users.getall.GetUsersPresenter;
 import java.util.List;
 
-public class ChatFragment extends Fragment implements View, OnItemClickListener, SwipeRefreshLayout.OnRefreshListener {
+public class ChatFragment extends Fragment implements GetUsersContract.View, ItemClickSupport.OnItemClickListener, SwipeRefreshLayout.OnRefreshListener {
+
     public static final String ARG_TYPE = "type";
     public static final String TYPE_ALL = "type_all";
     public static final String TYPE_CHATS = "type_chats";
@@ -31,19 +34,20 @@ public class ChatFragment extends Fragment implements View, OnItemClickListener,
     private RecyclerView mRecyclerViewAllUserListing;
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private UserListingRecyclerAdapter mUserListingRecyclerAdapter;
-    
-    
+
+
 
     public static ChatFragment newInstance(String type) {
         Bundle args = new Bundle();
-        args.putString("type", type);
+        args.putString(ARG_TYPE, type);
         ChatFragment fragment = new ChatFragment();
         fragment.setArguments(args);
         return fragment;
     }
+    @Nullable
     @Override
-    public android.view.View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        android.view.View fragmentView = inflater.inflate(R.layout.fragment_chat, container, false);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View fragmentView = inflater.inflate(R.layout.fragment_chat, container, false);
         bindViews(fragmentView);
         return fragmentView;
     }
@@ -52,7 +56,7 @@ public class ChatFragment extends Fragment implements View, OnItemClickListener,
         mSwipeRefreshLayout =  view.findViewById(R.id.swipe_refresh_layout);
         mRecyclerViewAllUserListing = view.findViewById(R.id.my_recycler_view);
     }
-
+    @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         init();
@@ -67,10 +71,11 @@ public class ChatFragment extends Fragment implements View, OnItemClickListener,
                mSwipeRefreshLayout.setRefreshing(true);
             }
         });
-        ItemClickSupport.addTo(mRecyclerViewAllUserListing).setOnItemClickListener(this);
+        ItemClickSupport.addTo(mRecyclerViewAllUserListing)
+                .setOnItemClickListener(this);
         mSwipeRefreshLayout.setOnRefreshListener(this);
     }
-
+    @Override
     public void onRefresh() {
         getUsers();
     }
@@ -78,11 +83,16 @@ public class ChatFragment extends Fragment implements View, OnItemClickListener,
     private void getUsers() {
         mGetUsersPresenter.getAllUsers();
     }
-
-    public void onItemClicked(RecyclerView recyclerView, int position, android.view.View v) {
-        ChatActivity.startActivity(getActivity(), mUserListingRecyclerAdapter.getUser(position).firstname, mUserListingRecyclerAdapter.getUser(position).lastname, mUserListingRecyclerAdapter.getUser(position).email, mUserListingRecyclerAdapter.getUser(position).link, mUserListingRecyclerAdapter.getUser(position).firebaseToken);
+    @Override
+    public void onItemClicked(RecyclerView recyclerView, int position, View v) {
+        ChatActivity.startActivity(getActivity(),
+                mUserListingRecyclerAdapter.getUser(position).firstname,
+                mUserListingRecyclerAdapter.getUser(position).lastname,
+                mUserListingRecyclerAdapter.getUser(position).email,
+                mUserListingRecyclerAdapter.getUser(position).link,
+                mUserListingRecyclerAdapter.getUser(position).firebaseToken);
     }
-
+    @Override
     public void onGetAllUsersSuccess(List<User> users) {
         mSwipeRefreshLayout.post(new Runnable() {
             @Override
@@ -101,7 +111,7 @@ public class ChatFragment extends Fragment implements View, OnItemClickListener,
         mRecyclerViewAllUserListing.setAdapter(mUserListingRecyclerAdapter);
         mUserListingRecyclerAdapter.notifyDataSetChanged();
     }
-
+    @Override
     public void onGetAllUsersFailure(String message) {
         mSwipeRefreshLayout.post(new Runnable() {
             @Override
@@ -109,16 +119,14 @@ public class ChatFragment extends Fragment implements View, OnItemClickListener,
                 mSwipeRefreshLayout.setRefreshing(false);
             }
         });
-        Context activity = getActivity();
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("Error: ");
-        stringBuilder.append(message);
-        Toast.makeText(activity, stringBuilder.toString(), Toast.LENGTH_LONG).show();
-    }
+        Toast.makeText(getActivity(), "Error: " + message, Toast.LENGTH_SHORT).show();
 
+    }
+    @Override
     public void onGetChatUsersSuccess(List<User> list) {
     }
 
+    @Override
     public void onGetChatUsersFailure(String message) {
     }
 }

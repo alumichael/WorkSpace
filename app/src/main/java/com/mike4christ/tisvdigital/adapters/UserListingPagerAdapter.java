@@ -14,16 +14,16 @@ public class UserListingPagerAdapter extends FragmentPagerAdapter {
     public UserListingPagerAdapter(FragmentManager fm) {
         super(fm);
     }
-
+    @Override
     public Fragment getItem(int position) {
         return sFragments[position];
     }
-
+    @Override
     public int getCount() {
         return sFragments.length;
     }
-
-    public String getPageTitle(int position) {
+    @Override
+    public CharSequence getPageTitle(int position) {
         return sTitles[position];
     }
 }
