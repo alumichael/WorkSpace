@@ -10,7 +10,9 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="centerCrop" />
+        android:scaleType="centerCrop"
+        android:background="@drawable/chat_bg_edited"
+        />
 
     <RelativeLayout
         android:layout_width="match_parent"

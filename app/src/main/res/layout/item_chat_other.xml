@@ -13,19 +13,55 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/rounded_bg_chat"
         android:orientation="vertical"
         android:backgroundTint="@color/colorAccent"
-        android:padding="@dimen/size_five">
+        android:layout_marginEnd="@dimen/margin_huge">
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/text_view_chat_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/margin_huge"
-            android:padding="@dimen/padding_small"
-            android:text="Nice One "
+
+            android:paddingEnd="10dp"
+            android:paddingTop="2dp"
+            android:paddingStart="27dp"
+            android:paddingBottom="2dp"
+
+            android:text="Nice One oooooooooooooooo\njhjj "
+            android:backgroundTint="@color/colorAccent"
+            android:background="@drawable/grey_bubble"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/colorPrimary" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="bottom|end"
+                android:gravity="end"
+                android:paddingEnd="10dp"
+                android:paddingBottom="4dp"
+                >
+
+                <TextView
+                    android:id="@+id/time_get"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="04:00 AM"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="10sp"
+                    android:textStyle="italic"
+                    android:visibility="invisible"
+
+
+                    />
+
+            </LinearLayout>
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
     </LinearLayout>
+
 </RelativeLayout>

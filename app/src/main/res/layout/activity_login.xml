@@ -23,7 +23,7 @@
         <ImageView
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:src="@drawable/logo_for_now_left" />
+            android:src="@drawable/reg_logo" />
 
         <TextView
             android:layout_width="match_parent"
@@ -31,6 +31,7 @@
             android:layout_marginLeft="@dimen/size_eighteen"
             android:layout_marginBottom="@dimen/size_sixty"
             android:text="Login"
+            android:textStyle="bold"
             android:textColor="@color/colorWhite"
             android:textSize="25sp" />
 
@@ -84,7 +85,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:visibility="gone"
-            app:indicatorColor="@color/colorAccent"
+            app:indicatorColor="@color/colorPrimary"
             app:indicatorName="BallPulseIndicator" />
 
         <LinearLayout
@@ -110,7 +111,7 @@
                 android:layout_marginStart="@dimen/size_ten"
                 android:layout_marginLeft="@dimen/size_ten"
                 android:text="Register"
-                android:textColor="@color/colorAccent"
+                android:textColor="#000000"
                 android:textSize="20sp"
                 android:textStyle="bold" />
         </LinearLayout>

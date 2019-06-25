@@ -48,7 +48,7 @@ public class Dashboard extends AppCompatActivity {
     TabLayout tablayout;
     @BindView(R.id.toolbar)
     Toolbar toolBar;
-    @BindView(R.id.view_pager)
+    @BindView(R.id.viewpager)
     ViewPager viewPager;
 
 
@@ -171,7 +171,7 @@ public class Dashboard extends AppCompatActivity {
 
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
-                tab.getIcon().setColorFilter(getResources().getColor(R.color.colorWhite), Mode.SRC_IN);
+                tab.getIcon().setColorFilter(getResources().getColor(R.color.colorAccent), Mode.SRC_IN);
                 int position = tab.getPosition();
                 Dashboard dashboard;
                 if (position == 0) {
@@ -199,9 +199,21 @@ public class Dashboard extends AppCompatActivity {
         if (itemId == R.id.log_out) {
             logout();
             return true;
+        }else if(itemId==R.id.share) {
+
+                Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+                sharingIntent.setType("text/plain");
+
+                sharingIntent.putExtra(Intent.EXTRA_SUBJECT, "Tisv.Digital Mobile");
+                sharingIntent.putExtra(Intent.EXTRA_TEXT, "Download and Enjoy digital interaction");
+
+                startActivity(Intent.createChooser(sharingIntent, "Share via"));
+            return true;
+
         } else if (itemId != R.id.profile) {
             return super.onOptionsItemSelected(item);
-        } else {
+        }
+        else {
             startActivity(new Intent(this, ProfileActivity.class));
             return true;
         }

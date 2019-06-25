@@ -16,7 +16,7 @@ public class FcmNotificationBuilder {
 
     private static final String APPLICATION_JSON = "application/json";
     private static final String AUTHORIZATION = "Authorization";
-    private static final String AUTH_KEY = "key=YOUR_SERVER_API_KEY";
+    private static final String AUTH_KEY = "key=AAAAta0Qxyg:APA91bHo-fDDNHtQfHsMAr-CvC4afYgxB7Wb5TL-Ir5G8PgSlsN5iTTX0-cir-sdUgelpb_RohR2pfCR5y9jMxE54Uj87ge3GAHJvmKHlc9EBUiaq0WbGq9LfOVwFLZwliZYHayzcmM3";
     private static final String CONTENT_TYPE = "Content-Type";
     private static final String FCM_URL = "https://fcm.googleapis.com/fcm/send";
     private static final String KEY_DATA = "data";
@@ -30,7 +30,7 @@ public class FcmNotificationBuilder {
     private static final String KEY_TITLE = "title";
     private static final String KEY_TO = "to";
     public static final MediaType MEDIA_TYPE_JSON = MediaType.parse("application/json; charset=utf-8");
-    private static final String SERVER_API_KEY = "YOUR_SERVER_API_KEY";
+    private static final String SERVER_API_KEY = "AAAAta0Qxyg:APA91bHo-fDDNHtQfHsMAr-CvC4afYgxB7Wb5TL-Ir5G8PgSlsN5iTTX0-cir-sdUgelpb_RohR2pfCR5y9jMxE54Uj87ge3GAHJvmKHlc9EBUiaq0WbGq9LfOVwFLZwliZYHayzcmM3";
     private static final String TAG = "FcmNotificationBuilder";
     private String mEmail;
     private String mFirebaseToken;

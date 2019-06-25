@@ -11,6 +11,10 @@ public class User {
     public String password;
     public String phone_num;
 
+    public User(){
+
+    }
+
     public User(String firstname, String lastname, String designation, String phone_num, String email, String password, String link, String firebaseToken) {
         this.firstname = firstname;
         this.lastname = lastname;

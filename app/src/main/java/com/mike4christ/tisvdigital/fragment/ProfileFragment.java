@@ -1,5 +1,6 @@
 package com.mike4christ.tisvdigital.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -75,12 +76,15 @@ public class ProfileFragment extends Fragment {
                             prof_designation.setText(user.getDesignation());
                             prof_email.setText(user.getEmail());
                             prof_phoneNum.setText(user.getPhone_num());
+
+
+
                             if (user.getLink().equals("Default")) {
                                 ProfileFragment.this.profile_photo.setImageResource(R.drawable.man);
                             } else {
                                 Glide.with(getContext()).load(user.getLink()).apply(new RequestOptions().fitCenter().circleCrop()).into(profile_photo);
                             }
-                            ProfileFragment.this.progressBar_profile.setVisibility(View.GONE);
+                            progressBar_profile.setVisibility(View.GONE);
                         }
                     }
                     

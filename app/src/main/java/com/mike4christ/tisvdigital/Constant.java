@@ -13,8 +13,13 @@ public class Constant {
     public static final String ARG_SENDER_FIRSTNAME = "sender_firstname";
     public static final String ARG_USERS = "Users";
     public static final String USER_PREF = "prefs";
+    public static final int PRIVATE_MODE = 0;
+    public static final String ARG_SENDER_LASTNAME = "sender_lastname";
+    public static final String ARG_SENDER_DESIGNATION = "sender_designation";
+    public static final String ARG_SENDER_PHONE_NUM = "sender_phonenum";
 
     public static String IS_FIRST_TIME_LAUNCH = "IsFirstTimeLaunch";
+    public static String IS_SENT_SUCCESS = "IsSentSuccess";
     public static final String IS_USER_LOGGED = "user_login";
 
     public static final String POST_TILE = "title";

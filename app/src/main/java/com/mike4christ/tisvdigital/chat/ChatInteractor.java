@@ -12,6 +12,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.mike4christ.tisvdigital.Constant;
+import com.mike4christ.tisvdigital.UserPreferences;
 import com.mike4christ.tisvdigital.chat.ChatContract.Interactor;
 import com.mike4christ.tisvdigital.chat.ChatContract.OnGetMessagesListener;
 import com.mike4christ.tisvdigital.chat.ChatContract.OnSendMessageListener;
@@ -23,6 +24,9 @@ public class ChatInteractor implements ChatContract.Interactor {
     private static final String TAG = "ChatInteractor";
     private OnGetMessagesListener mOnGetMessagesListener;
     private OnSendMessageListener mOnSendMessageListener;
+    Context context;
+
+   // public UserPreferences userPreferences=new UserPreferences(context.getApplicationContext());
 
     public ChatInteractor(OnSendMessageListener onSendMessageListener) {
         this.mOnSendMessageListener = onSendMessageListener;
@@ -35,13 +39,16 @@ public class ChatInteractor implements ChatContract.Interactor {
     public ChatInteractor(OnSendMessageListener onSendMessageListener, OnGetMessagesListener onGetMessagesListener) {
         this.mOnSendMessageListener = onSendMessageListener;
         this.mOnGetMessagesListener = onGetMessagesListener;
+
     }
 
     @Override
     public void sendMessageToFirebaseUser(final Context context, final Chat chat, final String receiverFirebaseToken) {
 
-        final String room_type_1=chat.senderEmail +"_"+chat.receiverEmail;
-        final String room_type_2=chat.receiverEmail +"_"+chat.senderEmail;
+
+
+        final String room_type_1=chat.senderEmail.replace(".",",") +"_"+chat.receiverEmail.replace(".",",");
+        final String room_type_2=chat.receiverEmail.replace(".",",") +"_"+chat.senderEmail.replace(".",",");
 
         final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
 
@@ -58,6 +65,10 @@ public class ChatInteractor implements ChatContract.Interactor {
                     Log.e(TAG, "sendMessageToFirebaseUser: success");
                     databaseReference.child(Constant.ARG_CHAT_ROOMS).child(room_type_1).child(String.valueOf(chat.timestamp)).setValue(chat);
                     getMessageFromFirebaseUser(chat.senderEmail, chat.receiverEmail);
+
+                    new UserPreferences(context).setSentSuccess(true);
+
+
                 }
                 // send push notification to the receiver
                 sendPushNotificationToReceiver(
@@ -79,6 +90,8 @@ public class ChatInteractor implements ChatContract.Interactor {
     }
     @Override
     public void getMessageFromFirebaseUser(String senderEmail, String receiverEmail) {
+        senderEmail=senderEmail.replace(".",",");
+        receiverEmail=receiverEmail.replace(".",",");
         final String room_type_1 = senderEmail + "_" + receiverEmail;
         final String room_type_2 = receiverEmail + "_" + senderEmail;
 

@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 import android.view.View;
 
@@ -12,7 +13,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import androidx.viewpager.widget.ViewPager;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.mike4christ.tisvdigital.ChatActivity;
 import com.mike4christ.tisvdigital.Constant;
 import com.mike4christ.tisvdigital.ItemClickSupport;
@@ -25,6 +28,8 @@ import com.mike4christ.tisvdigital.users.getall.GetUsersContract;
 import com.mike4christ.tisvdigital.users.getall.GetUsersPresenter;
 import java.util.List;
 
+import butterknife.BindView;
+
 public class ChatFragment extends Fragment implements GetUsersContract.View, ItemClickSupport.OnItemClickListener, SwipeRefreshLayout.OnRefreshListener {
 
     public static final String ARG_TYPE = "type";
@@ -34,6 +39,8 @@ public class ChatFragment extends Fragment implements GetUsersContract.View, Ite
     private RecyclerView mRecyclerViewAllUserListing;
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private UserListingRecyclerAdapter mUserListingRecyclerAdapter;
+    @BindView(R.id.users_frame)
+    FrameLayout users_frame;
 
 
 
@@ -104,7 +111,8 @@ public class ChatFragment extends Fragment implements GetUsersContract.View, Ite
         });
         if (users.size() == 0) {
             mSwipeRefreshLayout.setVisibility(View.GONE);
-            Toast.makeText(getActivity(), "User is empty", Toast.LENGTH_LONG).show();
+
+            Snackbar.make(users_frame, "User is empty", Snackbar.LENGTH_SHORT).show();
             return;
         }
         mUserListingRecyclerAdapter = new UserListingRecyclerAdapter(users);

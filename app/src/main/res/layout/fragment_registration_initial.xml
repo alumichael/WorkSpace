@@ -12,7 +12,7 @@
         android:layout_gravity="center_vertical"
         android:contentDescription="background image"
         android:scaleType="centerCrop"
-        android:src="@drawable/login_bgpix" />
+        android:src="@drawable/reg_bgpix" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -31,7 +31,7 @@
             <ImageView
                 android:layout_width="150dp"
                 android:layout_height="150dp"
-                android:src="@drawable/logo_for_now" />
+                android:src="@drawable/login_logo" />
         </RelativeLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -160,7 +160,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:visibility="gone"
-            app:indicatorColor="@color/colorAccent"
+            app:indicatorColor="@color/colorPrimary"
             app:indicatorName="BallPulseIndicator" />
     </LinearLayout>
 </FrameLayout>

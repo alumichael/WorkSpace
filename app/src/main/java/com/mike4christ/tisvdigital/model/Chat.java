@@ -7,6 +7,10 @@ public class Chat {
     public String senderEmail;
     public long timestamp;
 
+    public Chat(){
+
+    }
+
     public Chat(String receiver_firstname, String senderEmail, String receiverEmail, String message, long timestamp) {
         this.receiver_firstname = receiver_firstname;
         this.senderEmail = senderEmail;

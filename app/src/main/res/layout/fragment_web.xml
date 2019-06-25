@@ -3,6 +3,7 @@
 
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:theme="@style/AppThemeDashboard"
     android:background="#f0f0f0">
 
     <WebView

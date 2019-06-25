@@ -42,7 +42,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     Button loginBtn;
     @BindView(R.id.password_editxt)
     EditText passwordEditxt;
-    @BindView(R.id.progressBar)
+    @BindView(R.id.avi1)
     AVLoadingIndicatorView progressView;
     DatabaseReference reference;
     @BindView(R.id.txt_register)
@@ -60,10 +60,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         if (firebaseAuth.getCurrentUser() != null) {
             userPreferences.setUserLogged(true);
             startActivity(new Intent(this, Dashboard.class));
+        }else {
+            txtRegister.setOnClickListener(this);
+            txt_forget_pass.setOnClickListener(this);
+            loginBtn.setOnClickListener(this);
         }
-        txtRegister.setOnClickListener(this);
-        txt_forget_pass.setOnClickListener(this);
-        loginBtn.setOnClickListener(this);
     }
 
     @Override

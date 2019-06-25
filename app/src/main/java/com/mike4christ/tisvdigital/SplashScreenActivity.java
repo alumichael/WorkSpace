@@ -44,7 +44,7 @@ public class SplashScreenActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        if (userPreferences.isFirstTimeLaunch()) {
+        if (!userPreferences.isFirstTimeLaunch()) {
 
             ButtomUp = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_in_from_buttom);
             blink = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.blink);

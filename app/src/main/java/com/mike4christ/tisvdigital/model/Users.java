@@ -6,6 +6,10 @@ public class Users {
     private String lastMessage;
     private int notifCount;
 
+    public Users(){
+
+    }
+
     public String getEmailId() {
         return emailId;
     }

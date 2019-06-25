@@ -1,6 +1,7 @@
 package com.mike4christ.tisvdigital.fragment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -27,8 +28,7 @@ import com.mike4christ.tisvdigital.events.PushNotificationEvent;
 import com.mike4christ.tisvdigital.model.Chat;
 import com.mike4christ.tisvdigital.model.User;
 
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
+
 
 import java.util.ArrayList;
 
@@ -66,13 +66,22 @@ public class OneOnOneFragment extends Fragment implements ChatContract.View ,Vie
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        init();
+        try {
+            init();
+
+        }catch (Exception e){
+            Toast.makeText(getActivity(), "Try to SignIn again"+e.getMessage(), Toast.LENGTH_LONG).show();
+            Log.i("Problem",e.getMessage());
+
+        }
     }
 
     private void init() {
         fab_send.setOnClickListener(this);
-        mChatPresenter = new ChatPresenter(this);
-        mChatPresenter.getMessage(FirebaseAuth.getInstance().getCurrentUser().getEmail(),
+
+        this.mChatPresenter = new ChatPresenter(this);
+        ChatPresenter chatPresenter = this.mChatPresenter;
+        chatPresenter.getMessage(FirebaseAuth.getInstance().getCurrentUser().getEmail(),
                 getArguments().getString(Constant.ARG_RECEIVER_EMAIL));
     }
 
@@ -107,7 +116,7 @@ public class OneOnOneFragment extends Fragment implements ChatContract.View ,Vie
     @Override
     public void onGetMessagesSuccess(Chat chat) {
         if (mChatRecyclerAdapter == null) {
-            mChatRecyclerAdapter = new ChatRecyclerAdapter(new ArrayList<Chat>());
+            mChatRecyclerAdapter = new ChatRecyclerAdapter(getContext(),new ArrayList<Chat>());
             mRecyclerViewChat.setAdapter(mChatRecyclerAdapter);
         }
         mChatRecyclerAdapter.add(chat);

@@ -85,7 +85,7 @@ public class RegistrationInitialFragment extends Fragment implements View.OnClic
     @BindView(R.id.phone_num_editxt)
     EditText phoneEditxt;
     public String phone_num;
-    @BindView(R.id.progressBar)
+    @BindView(R.id.avi1)
     AVLoadingIndicatorView progressBar;
     @BindView(R.id.register_btn)
     Button regBtn;

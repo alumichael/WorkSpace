@@ -7,6 +7,7 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore.Images.Media;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -14,6 +15,7 @@ import android.view.ViewGroup;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -21,15 +23,22 @@ import androidx.fragment.app.Fragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
@@ -37,6 +46,7 @@ import com.google.firebase.storage.UploadTask.TaskSnapshot;
 import com.mike4christ.tisvdigital.Constant;
 import com.mike4christ.tisvdigital.ProfileActivity;
 import com.mike4christ.tisvdigital.R;
+import com.mike4christ.tisvdigital.model.User;
 import com.wang.avi.AVLoadingIndicatorView;
 import de.hdodenhof.circleimageview.CircleImageView;
 import java.io.IOException;
@@ -77,6 +87,10 @@ public class ProfileEditFragment extends Fragment implements View.OnClickListene
     StorageReference storageReference;
     @BindView(R.id.update_btn)
     Button update_btn;
+    @BindView(R.id.edit_layout)
+    LinearLayout edit_layout;
+
+
 
 
     @Override
@@ -88,6 +102,7 @@ public class ProfileEditFragment extends Fragment implements View.OnClickListene
         connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         networkInfo = connectivityManager.getActiveNetworkInfo();
         setViewActions();
+        getUserProfile();
         return fragmentView;
     }
 
@@ -188,8 +203,9 @@ public class ProfileEditFragment extends Fragment implements View.OnClickListene
                                                  profileEditFragment.startActivity(new Intent(profileEditFragment.getContext(), ProfileActivity.class));
                                                  return;
                                              }
-                                             Toast.makeText(getContext(), "Update not Failed", Toast.LENGTH_SHORT).show();
+                                             Toast.makeText(getContext(), "Update Failed", Toast.LENGTH_SHORT).show();
                                              avi1.setVisibility(View.GONE);
+                                             update_btn.setVisibility(View.VISIBLE);
                                              
                                              
                                          }
@@ -199,11 +215,13 @@ public class ProfileEditFragment extends Fragment implements View.OnClickListene
                 public void onFailure(@NonNull Exception e) {
                     Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                    avi1.setVisibility(View.GONE);
-                   update_btn.setVisibility(View.GONE);
+                   update_btn.setVisibility(View.VISIBLE);
                 }
             });
             return;
         }
+
+
         Toast.makeText(getContext(), "Select Image", Toast.LENGTH_SHORT).show();
         avi1.setVisibility(View.GONE);
         update_btn.setVisibility(View.VISIBLE);
@@ -225,6 +243,8 @@ public class ProfileEditFragment extends Fragment implements View.OnClickListene
             pick_photo.setImageBitmap(Media.getBitmap(getContext().getContentResolver(), imageUri));
         } catch (IOException e) {
             e.printStackTrace();
+            Snackbar.make(edit_layout, "Please Check your Image", Snackbar.LENGTH_SHORT).setAction("Action", null).show();
+
         }
     }
 
@@ -239,5 +259,46 @@ public class ProfileEditFragment extends Fragment implements View.OnClickListene
         } else if (id == R.id.update_btn) {
             ValidateProfile();
         }
+    }
+
+    private void getUserProfile() {
+
+        auth = FirebaseAuth.getInstance().getCurrentUser();
+        if (auth != null) {
+            reference = FirebaseDatabase.getInstance().getReference(Constant.ARG_USERS);
+            reference.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    for (DataSnapshot dataSnapshotChild : dataSnapshot.getChildren()) {
+                        User user = dataSnapshotChild.getValue(User.class);
+                        if (TextUtils.equals(user.getEmail(), FirebaseAuth.getInstance().getCurrentUser().getEmail())) {
+                            firstname_editxt.setText(user.getFirstname());
+                            lastname_editxt.setText(user.getLastname());
+                            designation_editxt.setText(user.getDesignation());
+                            phone_num_editxt.setText(user.getPhone_num());
+
+
+
+                            if (user.getLink().equals("Default")) {
+                               pick_photo.setImageResource(R.drawable.man);
+                            } else {
+                                Glide.with(getContext()).load(user.getLink()).apply(new RequestOptions().fitCenter().circleCrop()).into(pick_photo);
+                            }
+
+                        }
+                    }
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Snackbar.make(edit_layout, databaseError.getMessage(), Snackbar.LENGTH_SHORT).setAction("Action", null).show();
+
+                }
+            });
+            return;
+        }
+            Snackbar.make(edit_layout, "Null User, Try to Re-Login", Snackbar.LENGTH_SHORT).setAction((CharSequence) "Action", null).show();
+
     }
 }
