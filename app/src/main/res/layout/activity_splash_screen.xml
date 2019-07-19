@@ -29,8 +29,7 @@
             android:id="@+id/txt_desc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="cursive"
-            android:text="...creative technology..."
+            android:text="-creative technology-"
             android:textAlignment="center"
             android:textColor="@color/colorPrimary"
             android:textSize="@dimen/smallText" />

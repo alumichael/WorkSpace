@@ -25,7 +25,6 @@ public class ProfileActivity extends AppCompatActivity {
         ButterKnife.bind( this);
         setSupportActionBar(toolBar);
         toolBar.setTitleTextColor(getResources().getColor(R.color.colorWhite));
-        toolBar.setLogo(R.drawable.icon);
         toolBar.setTitle("Profile");
         initialFragment();
     }

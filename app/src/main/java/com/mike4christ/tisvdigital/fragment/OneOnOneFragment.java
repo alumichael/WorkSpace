@@ -1,10 +1,19 @@
 package com.mike4christ.tisvdigital.fragment;
 
+import android.accounts.NetworkErrorException;
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.Network;
+import android.net.NetworkCapabilities;
+import android.net.NetworkInfo;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -42,6 +51,20 @@ public class OneOnOneFragment extends Fragment implements ChatContract.View ,Vie
     @BindView(R.id.recycler_view_chat)
     RecyclerView mRecyclerViewChat;
 
+    @BindView(R.id.img_sent)
+    ImageView img_sent;
+    @BindView(R.id.img_sent_fail)
+    ImageView img_sent_fail;
+
+
+    /*@BindView(R.id.chatting_bg_image)
+    ImageView chatting_bg_image;*/
+    private ConnectivityManager connectivityManager;
+    private NetworkInfo networkInfo;
+
+
+
+
 
 
     public static OneOnOneFragment newInstance(String receiver_firstname, String receiver_lastname, String receiver_email, String receiver_link, String firebaseToken) {
@@ -60,6 +83,16 @@ public class OneOnOneFragment extends Fragment implements ChatContract.View ,Vie
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View fragmentView = inflater.inflate(R.layout.fragment_one_on_one, container, false);
         ButterKnife.bind(this, fragmentView);
+
+        if(!(isNetworkConnected())) {
+            mETxtMessage.setText("");
+            img_sent.setVisibility(View.GONE);
+            img_sent_fail.setVisibility(View.VISIBLE);
+
+            Toast.makeText(getActivity(), "Please Check your Internet Connection", Toast.LENGTH_LONG).show();
+        }
+
+
         return fragmentView;
     }
 
@@ -68,6 +101,13 @@ public class OneOnOneFragment extends Fragment implements ChatContract.View ,Vie
         super.onActivityCreated(savedInstanceState);
         try {
             init();
+            if(!(isNetworkConnected())) {
+                mETxtMessage.setText("");
+                img_sent.setVisibility(View.GONE);
+                img_sent_fail.setVisibility(View.VISIBLE);
+
+                Toast.makeText(getActivity(), "Please Check your Internet Connection", Toast.LENGTH_LONG).show();
+            }
 
         }catch (Exception e){
             Toast.makeText(getActivity(), "Try to SignIn again"+e.getMessage(), Toast.LENGTH_LONG).show();
@@ -86,31 +126,75 @@ public class OneOnOneFragment extends Fragment implements ChatContract.View ,Vie
     }
 
     private void sendMessage() {
-        String message = mETxtMessage.getText().toString();
-        String receiver_firstname = getArguments().getString(Constant.ARG_RECEIVER_FIRST);
-        String receiver_email = getArguments().getString(Constant.ARG_RECEIVER_EMAIL);
-        String senderEmail = FirebaseAuth.getInstance().getCurrentUser().getEmail();
-        String receiverFirebaseToken = getArguments().getString(Constant.ARG_FIREBASE_TOKEN);
+
+            try {
+
+                String message = mETxtMessage.getText().toString();
+                String receiver_firstname = getArguments().getString(Constant.ARG_RECEIVER_FIRST);
+                String receiver_email = getArguments().getString(Constant.ARG_RECEIVER_EMAIL);
+                String senderEmail = FirebaseAuth.getInstance().getCurrentUser().getEmail();
+                String receiverFirebaseToken = getArguments().getString(Constant.ARG_FIREBASE_TOKEN);
 
 
-        Chat chat = new Chat(receiver_firstname,
-                senderEmail,
-                receiver_email,
-                message,
-                System.currentTimeMillis());
-        mChatPresenter.sendMessage(getActivity().getApplicationContext(),
-                chat,
-                receiverFirebaseToken);
+                Chat chat = new Chat(receiver_firstname,
+                        senderEmail,
+                        receiver_email,
+                        message,
+                        System.currentTimeMillis());
+                mChatPresenter.sendMessage(getActivity().getApplicationContext(),
+                        chat,
+                        receiverFirebaseToken);
+            }catch (Exception e){
+                mETxtMessage.setText("");
+                img_sent.setVisibility(View.GONE);
+                img_sent_fail.setVisibility(View.VISIBLE);
+
+                Toast.makeText(getActivity(), "Please Check your Internet Connection", Toast.LENGTH_LONG).show();
 
 
+            }
+
+
+        }
+
+
+    public  boolean isNetworkConnected() {
+        Context context = getContext();
+        final ConnectivityManager cm = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (cm != null) {
+            if (Build.VERSION.SDK_INT < 23) {
+                final NetworkInfo ni = cm.getActiveNetworkInfo();
+
+                if (ni != null) {
+                    return (ni.isConnected() && (ni.getType() == ConnectivityManager.TYPE_WIFI || ni.getType() == ConnectivityManager.TYPE_MOBILE));
+                }
+            } else {
+                final Network n = cm.getActiveNetwork();
+
+                if (n != null) {
+                    final NetworkCapabilities nc = cm.getNetworkCapabilities(n);
+
+                    return (nc.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) || nc.hasTransport(NetworkCapabilities.TRANSPORT_WIFI));
+                }
+            }
+        }
+
+        return false;
     }
+
+
     @Override
     public void onSendMessageSuccess() {
         mETxtMessage.setText("");
-        Toast.makeText(getActivity(), "Message sent", Toast.LENGTH_LONG).show();
+        img_sent_fail.setVisibility(View.GONE);
+        img_sent.setVisibility(View.VISIBLE);
+       //Toast.makeText(getActivity(), "Message sent", Toast.LENGTH_LONG).show();
     }
     @Override
     public void onSendMessageFailure(String message) {
+        mETxtMessage.setText("");
+        img_sent.setVisibility(View.GONE);
+        img_sent_fail.setVisibility(View.VISIBLE);
         Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
     }
     @Override
@@ -150,8 +234,25 @@ public class OneOnOneFragment extends Fragment implements ChatContract.View ,Vie
             Toast.makeText(getContext(), "Empty Message typed", Toast.LENGTH_LONG).show();
             isValid = false;
         }
+         if(!isNetworkConnected()){
+            mETxtMessage.setText("");
+            img_sent.setVisibility(View.GONE);
+            img_sent_fail.setVisibility(View.VISIBLE);
+
+            Toast.makeText(getActivity(), "Please Check your Internet Connection", Toast.LENGTH_LONG).show();
+            isValid = false;
+        }
         if (isValid) {
-            sendMessage();
+            if(isNetworkConnected()) {
+                sendMessage();
+            }else{
+                mETxtMessage.setText("");
+                img_sent.setVisibility(View.GONE);
+                img_sent_fail.setVisibility(View.VISIBLE);
+
+                Toast.makeText(getActivity(), "Please Check your Internet Connection", Toast.LENGTH_LONG).show();
+
+            }
         }
     }
 }

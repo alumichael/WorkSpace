@@ -17,7 +17,11 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.mike4christ.tisvdigital.R;
 import com.mike4christ.tisvdigital.UserPreferences;
 import com.mike4christ.tisvdigital.model.Chat;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
 
 public class ChatRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -71,15 +75,23 @@ public class ChatRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         if(userPreferences.isSentSuccess()){
             myChatViewHolder.img_sent.setVisibility(View.VISIBLE);
             userPreferences.setSentSuccess(false);
+        }else{
+            myChatViewHolder.img_sent.setVisibility(View.INVISIBLE);
         }
         myChatViewHolder.time_sent.setVisibility(View.VISIBLE);
 
         long millis = chat.timestamp;
-        @SuppressLint("DefaultLocale") String hms = String.format("%02d:%02d:%02d", TimeUnit.MILLISECONDS.toHours(millis),
-                TimeUnit.MILLISECONDS.toMinutes(millis) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(millis)),
-                TimeUnit.MILLISECONDS.toSeconds(millis) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millis)));
 
-        myChatViewHolder.time_sent.setText(hms);
+        // New date object from millis
+        Date date = new Date(millis);
+// formattter
+        SimpleDateFormat formatter= new SimpleDateFormat("HH:mm");
+
+// Pass date object
+        String formatted = formatter.format(date );
+
+
+        myChatViewHolder.time_sent.setText(formatted);
 
 
 
@@ -92,11 +104,15 @@ public class ChatRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         otherChatViewHolder.time_get.setVisibility(View.VISIBLE);
 
         long millis = chat.timestamp;
-        @SuppressLint("DefaultLocale") String hms = String.format("%02d:%02d:%02d", TimeUnit.MILLISECONDS.toHours(millis),
-                TimeUnit.MILLISECONDS.toMinutes(millis) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(millis)),
-                TimeUnit.MILLISECONDS.toSeconds(millis) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millis)));
+        Date date = new Date(millis);
+// formattter
+        SimpleDateFormat formatter= new SimpleDateFormat("HH:mm");
 
-        otherChatViewHolder.time_get.setText(hms);
+// Pass date object
+        String formatted = formatter.format(date );
+
+
+        otherChatViewHolder.time_get.setText(formatted);
     }
 
     public int getItemCount() {

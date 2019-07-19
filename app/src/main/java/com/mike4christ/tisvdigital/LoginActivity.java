@@ -146,4 +146,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     public void showMessage(String s) {
         Toast.makeText(getApplicationContext(), s, Toast.LENGTH_LONG).show();
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
 }

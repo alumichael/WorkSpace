@@ -110,7 +110,6 @@ public class Dashboard extends AppCompatActivity {
             ButterKnife.bind( this);
             setSupportActionBar(toolBar);
             toolBar.setTitleTextColor(getResources().getColor(R.color.colorWhite));
-            toolBar.setLogo(R.drawable.icon);
             toolBar.setTitle(R.string.app_name);
             setupViewPager(viewPager);
             tablayout.setupWithViewPager(viewPager);

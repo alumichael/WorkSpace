@@ -31,12 +31,12 @@ public class ForgetPasswordActivity extends AppCompatActivity implements View.On
     private FirebaseAuth auth;
     @BindView(R.id.btn_back)
     TextView btn_back;
-    @BindView(R.id.email_editxt)
+    @BindView(R.id.email_editxt_forget)
     EditText email_editxt_forget;
     @BindView(R.id.forget_pass_btn)
     Button forget_pass_btn;
     NetworkInfo networkInfo;
-    @BindView(R.id.progressBar)
+    @BindView(R.id.avi1)
     AVLoadingIndicatorView progresBar;
     
     @Override

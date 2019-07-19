@@ -18,21 +18,21 @@
         android:layout_marginEnd="@dimen/margin_huge">
         <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingEnd="10dp"
+            android:paddingTop="2dp"
+            android:paddingStart="27dp"
+            android:paddingBottom="2dp"
+            android:background="@drawable/grey_bubble"
+            android:backgroundTint="@color/colorAccent"
+            >
 
         <TextView
             android:id="@+id/text_view_chat_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
-            android:paddingEnd="10dp"
-            android:paddingTop="2dp"
-            android:paddingStart="27dp"
-            android:paddingBottom="2dp"
-
             android:text="Nice One oooooooooooooooo\njhjj "
-            android:backgroundTint="@color/colorAccent"
-            android:background="@drawable/grey_bubble"
+            android:fontFamily="@font/gothambook"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/colorPrimary" />
 
@@ -55,6 +55,7 @@
                     android:textSize="10sp"
                     android:textStyle="italic"
                     android:visibility="invisible"
+                    android:fontFamily="@font/gothambook"
 
 
                     />

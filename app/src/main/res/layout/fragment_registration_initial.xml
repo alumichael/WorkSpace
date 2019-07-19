@@ -37,109 +37,145 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/inputLayoutEmail"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="46dp"
+            android:layout_marginLeft="@dimen/size_ten"
+            android:layout_marginRight="@dimen/size_ten"
+            android:background="@drawable/rounded_bg"
+            android:paddingLeft="@dimen/size_twelve"
+            android:paddingRight="@dimen/size_ten"
+            android:paddingTop="@dimen/size_four"
+            android:paddingBottom="@dimen/size_twelve"
+            >
 
             <EditText
                 android:id="@+id/email_editxt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/size_ten"
-                android:layout_marginRight="@dimen/size_ten"
                 android:background="@drawable/rounded_bg"
                 android:drawableEnd="@drawable/ic_email_black_24dp"
                 android:hint="Email"
                 android:inputType="textEmailAddress"
-                android:padding="@dimen/size_ten" />
+                 />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/inputLayoutFirstname"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="46dp"
+            android:layout_marginTop="@dimen/size_ten"
+            android:layout_marginLeft="@dimen/size_ten"
+            android:layout_marginRight="@dimen/size_ten"
+            android:background="@drawable/rounded_bg"
+            android:paddingLeft="@dimen/size_twelve"
+            android:paddingRight="@dimen/size_ten"
+            android:paddingTop="@dimen/size_four"
+            android:paddingBottom="@dimen/size_twelve">
 
             <EditText
                 android:id="@+id/firstname_editxt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/size_ten"
-                android:layout_marginRight="@dimen/size_ten"
                 android:background="@drawable/rounded_bg"
                 android:drawableEnd="@drawable/ic_person_black_24dp"
                 android:hint="First Name"
-                android:inputType="textPersonName"
-                android:padding="@dimen/size_ten" />
+                android:inputType="textPersonName" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/inputLayoutLastname"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="46dp"
+            android:layout_marginTop="@dimen/size_ten"
+            android:layout_marginLeft="@dimen/size_ten"
+            android:layout_marginRight="@dimen/size_ten"
+            android:background="@drawable/rounded_bg"
+            android:paddingLeft="@dimen/size_twelve"
+            android:paddingRight="@dimen/size_ten"
+            android:paddingTop="@dimen/size_four"
+            android:paddingBottom="@dimen/size_twelve">
 
             <EditText
                 android:id="@+id/lastname_editxt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/size_ten"
-                android:layout_marginRight="@dimen/size_ten"
                 android:background="@drawable/rounded_bg"
                 android:drawableEnd="@drawable/ic_person_black_24dp"
                 android:hint="Second Name"
                 android:inputType="textPersonName"
-                android:padding="@dimen/size_ten" />
+                />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/inputLayoutPhonenum"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="46dp"
+            android:layout_marginTop="@dimen/size_ten"
+            android:layout_marginLeft="@dimen/size_ten"
+            android:layout_marginRight="@dimen/size_ten"
+            android:background="@drawable/rounded_bg"
+            android:paddingLeft="@dimen/size_twelve"
+            android:paddingRight="@dimen/size_ten"
+            android:paddingTop="@dimen/size_four"
+            android:paddingBottom="@dimen/size_twelve"
+
+            >
 
             <EditText
                 android:id="@+id/phone_num_editxt"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/size_ten"
-                android:layout_marginRight="@dimen/size_ten"
+                android:layout_height="match_parent"
                 android:background="@drawable/rounded_bg"
                 android:drawableEnd="@drawable/ic_contact_phone_black_24dp"
                 android:hint="Phone Number"
                 android:inputType="textPersonName"
-                android:padding="@dimen/size_ten" />
+                />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/inputLayoutDesignation_stack"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="46dp"
+            android:layout_marginTop="@dimen/size_ten"
+            android:layout_marginLeft="@dimen/size_ten"
+            android:layout_marginRight="@dimen/size_ten"
+            android:background="@drawable/rounded_bg"
+            android:paddingLeft="@dimen/size_twelve"
+            android:paddingRight="@dimen/size_ten"
+            android:paddingTop="@dimen/size_four"
+            android:paddingBottom="@dimen/size_twelve">
 
             <EditText
                 android:id="@+id/designation_editxt"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/size_ten"
-                android:layout_marginRight="@dimen/size_ten"
+                android:layout_height="match_parent"
                 android:background="@drawable/rounded_bg"
                 android:drawableEnd="@drawable/ic_stars_black_24dp"
                 android:hint="Designation or Stack"
                 android:inputType="textPersonName"
-                android:padding="@dimen/size_ten" />
+                />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/inputLayoutPassword"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="46dp"
+            android:layout_marginTop="@dimen/size_ten"
+            android:layout_marginLeft="@dimen/size_ten"
+            android:layout_marginRight="@dimen/size_ten"
+            android:background="@drawable/rounded_bg"
+            android:paddingLeft="@dimen/size_twelve"
+            android:paddingRight="@dimen/size_ten"
+            android:paddingTop="@dimen/size_four"
+            android:paddingBottom="@dimen/size_twelve">
 
             <EditText
                 android:id="@+id/password_editxt"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/size_ten"
-                android:layout_marginRight="@dimen/size_ten"
+                android:layout_height="match_parent"
                 android:background="@drawable/rounded_bg"
                 android:drawableEnd="@drawable/ic_vpn_key_black_24dp"
                 android:hint="Password"
-                android:inputType="textPassword"
-                android:padding="@dimen/size_ten" />
+                android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
@@ -160,7 +196,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:visibility="gone"
-            app:indicatorColor="@color/colorPrimary"
+            app:indicatorColor="@color/colorAccent"
             app:indicatorName="BallPulseIndicator" />
     </LinearLayout>
 </FrameLayout>

@@ -39,7 +39,7 @@ public class UserPreferences {
     }
 
     public boolean isFirstTimeLaunch() {
-        return sharedPreferences.getBoolean(Constant.IS_SENT_SUCCESS, true);
+        return sharedPreferences.getBoolean(Constant.IS_FIRST_TIME_LAUNCH, true);
     }
 
     public void setSentSuccess(boolean isSentSuccess) {
@@ -48,7 +48,7 @@ public class UserPreferences {
     }
 
     public boolean isSentSuccess() {
-        return sharedPreferences.getBoolean(Constant.IS_FIRST_TIME_LAUNCH, false);
+        return sharedPreferences.getBoolean(Constant.IS_SENT_SUCCESS, false);
     }
 
     public void saveString(String key, String value) {

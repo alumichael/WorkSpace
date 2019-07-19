@@ -24,21 +24,20 @@
         <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
+            android:background="@drawable/green_bubble"
+            android:backgroundTint="@color/colorPrimary"
+            android:paddingEnd="25dp"
+            android:paddingTop="2dp"
+            android:paddingStart="10dp"
+            android:paddingBottom="2dp"
             >
 
             <TextView
                 android:id="@+id/text_view_chat_message"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingEnd="25dp"
-                android:paddingTop="2dp"
-                android:paddingStart="10dp"
-                android:paddingBottom="2dp"
-
                 android:text="Hi Friend oooooooooooo\noooooo"
-                android:background="@drawable/green_bubble"
-                android:backgroundTint="@color/colorPrimary"
+                android:fontFamily="@font/gothambook"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@color/colorWhite" />
 
@@ -52,14 +51,6 @@
               android:paddingEnd="25dp"
 
               >
-
-              <ImageView
-                  android:id="@+id/img_sent"
-                  android:layout_width="15dp"
-                  android:layout_height="15dp"
-                  android:src="@drawable/ic_sent"
-                  android:visibility="visible"
-                  />
               <TextView
                   android:id="@+id/time_sent"
                   android:layout_width="wrap_content"
@@ -69,9 +60,16 @@
                   android:textSize="10sp"
                   android:textStyle="italic"
                   android:visibility="visible"
+                  android:fontFamily="@font/gothambook"/>
 
-
+              <ImageView
+                  android:id="@+id/img_sent"
+                  android:layout_width="15dp"
+                  android:layout_height="15dp"
+                  android:src="@drawable/ic_sent"
+                  android:visibility="invisible"
                   />
+
 
           </LinearLayout>
 
